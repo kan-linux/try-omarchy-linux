@@ -8,6 +8,10 @@ DISK_DIR="${SCRIPT_DIR}/../disks"
 DISK_FILE="${DISK_DIR}/omarchy.qcow2"
 OVMF_DIR="${SCRIPT_DIR}/../ovmf"
 
+PWD="$(pwd)"
+PROJECT_HOME_PATH=${PWD}
+PROJECT_ROOT_PATH=${PROJECT_HOME_PATH}
+
 # Defaults
 RAM="16G"
 CPUS="4"
@@ -165,13 +169,19 @@ main() {
     auto_configure
 
     # If no ISO specified, try to find one in the project
-    if [ -z "${ISO}" ]; then
-        found_iso=$(find_iso) || true
-        if [ -n "${found_iso}" ]; then
-            ISO="${found_iso}"
-            echo "Found ISO: ${ISO}"
-        fi
-    fi
+    #if [ -z "${ISO}" ]; then
+    #    found_iso=$(find_iso) || true
+    #    if [ -n "${found_iso}" ]; then
+    #        ISO="${found_iso}"
+    #        echo "Found ISO: ${ISO}"
+    #    fi
+    #fi
+    ISO="${PROJECT_ROOT_PATH}/iso/omarchy-4.0.3.iso"
+    ISO="${PROJECT_ROOT_PATH}/iso/pop-os_24.04_amd64_generic_27.iso"
+    ISO="${PROJECT_ROOT_PATH}/iso/cachyos-desktop-linux-260809.iso"
+    ISO="${PROJECT_ROOT_PATH}/iso/ubuntu-26.04-desktop-amd64.iso"
+    ISO="${PROJECT_ROOT_PATH}/iso/deepin-desktop-community-25.2.0-amd64.iso"
+    ISO="${PROJECT_ROOT_PATH}/iso/omarchy-4.0.6.iso"
 
     # Require ISO for installation
     if [ -z "${ISO}" ]; then
